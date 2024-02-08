@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Training List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Training List</h2>
+
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Trainee</th>
+            <th>Trainer</th>
+            <th>Training Type</th>
+            <th>Training Name</th>
+            <th>Training Date</th>
+            <th>Training Duration (in minutes)</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="training : ${trainings}">
+            <td th:text="${training.id}"></td>
+            <td th:text="${training.trainee.firstName + ' ' + training.trainee.lastName}"></td>
+            <td th:text="${training.trainer.firstName + ' ' + training.trainer.lastName}"></td>
+            <td th:text="${training.trainingType.trainingTypeName}"></td>
+            <td th:text="${training.trainingName}"></td>
+            <td th:text="${training.trainingDate}"></td>
+            <td th:text="${training.trainingDuration}"></td>
+            <td><a th:href="@{/trainings/edit/{id}(id=${training.id})}" class="btn btn-primary btn-sm">Edit</a></td>
+            <td><a th:href="@{/trainings/delete/{id}(id=${training.id})}" class="btn btn-danger btn-sm">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Training Management Buttons">
+        <a href="/trainings/add" class="btn btn-success mb-2">Add Training</a>
+        <a href="/" class="btn btn-primary">Back to Main page</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

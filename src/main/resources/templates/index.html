@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Gym CRM</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Gym CRM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a th:href="@{/trainees}" class="nav-link">Manage Trainees</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trainee-login}" class="nav-link">Trainee Login</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trainers}" class="nav-link">Manage Trainers</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trainer-login}" class="nav-link">Trainer Login</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/training-types}" class="nav-link">Training Types</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/trainings}" class="nav-link">Manage Trainings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Welcome to Gym CRM</h2>
+
+    <section id="trainees">
+        <h3>Trainees</h3>
+        <p>Manage your gym's trainees efficiently with Gym CRM. Keep track of their personal information, membership status, attendance, and progress. Provide personalized training plans and monitor their fitness journey closely.</p>
+    </section>
+
+    <section id="trainers" class="mt-5">
+        <h3>Trainers</h3>
+        <p>Hire experienced and certified trainers to lead your gym's training sessions. With Gym CRM, you can manage trainer schedules, track their performance, and ensure they provide high-quality coaching to your trainees. Keep your trainers motivated and engaged to deliver exceptional fitness experiences.</p>
+    </section>
+
+    <section id="training-types" class="mt-5">
+        <h3>Training Types</h3>
+        <p>Offer a variety of training types to cater to different fitness goals and preferences. Gym CRM allows you to create and manage various training programs, including cardio, strength training, yoga, Pilates, and more. Customize training types based on the needs of your members and stay ahead in the competitive fitness indus
+    </section>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trainee List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .message {
+            color: red;
+        }
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        .btn-group-sm > .btn {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Trainee List</h2>
+
+    <form class="mb-4" th:action="@{/trainees}" method="get">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Trainee" name="search"
+                   th:value="${search}">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <!-- Message Display -->
+    <div th:if="${searchMessage}" class="mb-3">
+        <p th:text="${searchMessage}" class="message"></p>
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Active</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Actions</th>
+            <th>Activate/Deactivate</th>
+            <th>Delete by username</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="trainee : ${trainees}">
+            <td th:text="${trainee.firstName}"></td>
+            <td th:text="${trainee.lastName}"></td>
+            <td th:text="${trainee.username}"></td>
+            <td th:text="${trainee.isActive}"></td>
+            <td th:text="${trainee.dateOfBirth}"></td>
+            <td th:text="${trainee.address}"></td>
+            <td>
+                <a th:href="@{/trainees/edit/{id}(id=${trainee.id})}" class="btn btn-primary btn-sm">View
+                    Profile</a>
+                <a th:href="@{/trainees/delete/{id}(id=${trainee.id})}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/trainees/toggle-status/{id}(id=${trainee.id})}"
+                   class="btn btn-warning btn-sm">
+                    <span th:if="${trainee.isActive}">Deactivate</span>
+                    <span th:unless="${trainee.isActive}">Activate</span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/trainees/delete-by-username/{username}(username=${trainee.username})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure you want to delete this Trainee?')">Delete</a>
+            </td>
+        </tr>
+
+        <tr th:if="${trainees == null or trainees.isEmpty()}">
+            <td colspan="9">No trainees found for the given search criteria.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Trainee Management Buttons">
+        <a href="/trainees/add" class="btn btn-success">Add Trainee</a>
+        <a href="/trainees/training-list" class="btn btn-info">Get Trainee Training List by username and criteria</a>
+        <a href="/" class="btn btn-primary">Back to Main page</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
